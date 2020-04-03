@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hacker_news/view_models/story_list_view_model.dart';
+import 'package:hacker_news/widgets/story_list.dart';
 import 'package:provider/provider.dart';
 
 
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title:Text("Hacker News")
       ),
-      body: Text("Top stories"),
+      body: StoryList(stories: vm.stories),
     );
   }
 }
