@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:hacker_news/models/comment.dart';
 import 'package:hacker_news/models/story.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,5 +34,19 @@ class Webservice {
     }else {
       throw Exception("Unable to fetch data!");
     }
+  }
+
+  Future<List<Comment>> getCommentbyStory(Story story)async{
+    return Future.wait(story.commentId.map((commentId)async{
+      final url = "https://hacker-news.firebaseio.com/v0/item/${commentId}.json?print=pretty";
+
+    final response = await http.get(url);
+    if(response.statusCode == 200){
+      final Map<String,dynamic> json = jsonDecode(response.body);
+      return Comment.fromJson(json);
+    }else{
+      throw Exception("unable to get comments");
+    }
+    }));
   }
 }
