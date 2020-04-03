@@ -13,4 +13,7 @@ class StoryViewModel{
   String get url{
     return this.story.url;
   }
+  int get onOfComments{
+    return this.story.commentId.length;
+  } 
 }

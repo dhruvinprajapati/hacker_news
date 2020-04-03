@@ -16,6 +16,16 @@ class StoryList extends StatelessWidget {
         final story = this.stories[index];
         return ListTile(
           title: Text(story.title,style: TextStyle(fontSize: 20),),
+          trailing: Container(
+            height: 30,
+            width: 30,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.circular(6)
+            ),
+            child: Text("${story.onOfComments}",style: TextStyle(color: Colors.white),)
+            ),
         );
     });
   }
