@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hacker_news/view_models/story_list_view_model.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+
+  HomePage(){
+    StoryListViewModel().getTopStories();
+  }
 
   @override
   Widget build(BuildContext context) {
