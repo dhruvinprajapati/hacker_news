@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hacker_news/view_models/story_list_view_model.dart';
+import 'package:hacker_news/view_models/story_view_model.dart';
 import 'package:hacker_news/widgets/story_list.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +21,10 @@ class _HomePageState extends State<HomePage> {
     Provider.of<StoryListViewModel>(context,listen:false).getTopStories();
   }
 
+  void _navigateToCommentsPage(BuildContext context,StoryViewModel story){
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> Text(story.title)));
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -30,7 +35,12 @@ class _HomePageState extends State<HomePage> {
       ),
       body: 
       Consumer<StoryListViewModel>(builder: (context,vm,child){
-        return StoryList(stories: vm.stories);
+        return StoryList(
+          stories: vm.stories,
+          onSelected: (StoryViewModel story){
+            _navigateToCommentsPage(context,story);
+          },
+          );
       })
       
     );

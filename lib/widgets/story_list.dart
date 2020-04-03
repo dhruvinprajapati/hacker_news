@@ -4,8 +4,9 @@ import 'package:hacker_news/view_models/story_view_model.dart';
 class StoryList extends StatelessWidget {
   
   final List<StoryViewModel> stories;
+  final Function(StoryViewModel) onSelected;
 
-  StoryList({this.stories});
+  StoryList({this.stories,this.onSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,9 @@ class StoryList extends StatelessWidget {
 
         final story = this.stories[index];
         return ListTile(
+          onTap: (){
+            this.onSelected(story);
+          },
           title: Text(story.title,style: TextStyle(fontSize: 20),),
           trailing: Container(
             height: 30,
